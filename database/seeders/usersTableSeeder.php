@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Carbon\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -16,9 +15,8 @@ class usersTableSeeder extends Seeder
      */
     public function run()
     {
-        // factory(User::class, 15)->create();
         $param = [
-            'email' => 'aaa@co.jp',
+            'email' => 'test2@co.jp',
             'name' => 'テストユーザー',
             'password' => 'password',
         ];

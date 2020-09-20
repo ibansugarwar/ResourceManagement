@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Attendances;
 
-
 class attendanceTableSeeder extends Seeder
 {
     /**
@@ -17,11 +16,9 @@ class attendanceTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'date' => '2020-09-01',
-            'email' => 'aaa@co.jp',
+            'date' => '2020-09-02',
+            'email' => 'test@co.jp',
             'inTime' => '10:00:00',
-            'outTime' => '18:00:00',
-            'restTime' => '1:00:00',
         ];
         DB::table('attendances')->insert($param);
     }
