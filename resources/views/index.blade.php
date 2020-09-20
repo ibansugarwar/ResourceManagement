@@ -2,40 +2,6 @@
 
 @section('content')
     
-  <!-- Page Content -->
-  <div id="page-content-wrapper">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <button class="btn btn-primary" id="menu-toggle">トグル</button>
-      <button class="btn btn-primary" id="dakoku">出勤</button>
-      <button class="btn btn-primary" id="dakoku">退勤</button>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
     {{-- 選択年月 ------------------------------------------------------------------}}
 
@@ -64,37 +30,49 @@
       <option value='12'>12月</option>
     </select>
 
-    {{------------------------------------------------------------------DBと連携する必要がある↓--}}
+    {{--------------------------------------------------------------------------------}}
 
   <div class="container-fluid">
     {{--  <h1 class="mt-4">本文</h1>  --}}
+    
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>曜日</th>
+          <th>出勤時刻</th>
+          <th>退勤時刻</th>
+          <th>申請有無</th>
+        </th>
+      </thead>
+      <tbody>
+        <?php
+        $week_array = array( "日", "月", "火", "水", "木", "金", "土" );
+        $week_end = 31; //プルダウンから選んだ月の最終日を格納
 
-    <table style="border: solid">
-      <tr>
-        <th>年</th>
-        <th>月</th>
-        <th>日</th>
-        <th>曜日</th>
-        <th>出勤時刻</th>
-        <th>退勤時刻</th>
-        <th>申請有無</th>
-      </th>
 
-      <?php
-      for($i=1;$i<=31;$i++){
-        echo '<tr>
-          <td>2020</td>
-          <td>9</td>
-          <td>'.$i.'</td>
-          <td></td>
-          <td>10:00</td>
-          <td>19:00</td>
+        for($i=1; $i <= $week_end; $i++){
+          $day = '2020-09-'.str_pad($i, 2, '0',STR_PAD_LEFT);
+          $week_num = date('w', strtotime($day));
+          $week = $week_array[$week_num];
+
+          if($week_num == 0){
+            echo '<tr style="background-color:red">';
+          }elseif($week_num == 1){
+            echo '<tr style="background-color:skyblue">';
+          }else{
+            echo '<tr>';
+          }
+          echo '<td><a href="">'.$i.'</a></td>
+          <td>'.$week_array[date('w', strtotime($day))].'</td>
+          <td>DBと連携</td>
+          <td>DBと連携</td>
           <td>'.date('m').'</td>
         </tr>';
+        }
 
-      }
-      ?>
-
+        ?>
+      </tbody>
     </table>
 
   </div>

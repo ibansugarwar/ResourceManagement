@@ -8,7 +8,7 @@
   <div class="d-flex" id="wrapper">
 
     @include('includes.sidebar')
-
+    @include('includes.nav')
     @yield('content')
 
 

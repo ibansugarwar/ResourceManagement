@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAttendanceTable extends Migration
 {
-// protected $primaryKey = 'date';
-// protected $incrementing = false;
+protected $primaryKey = 'date';
+protected $incrementing = false;
 
     /**
      * Run the migrations.
@@ -20,9 +20,9 @@ class CreateAttendanceTable extends Migration
             $table->date('date')->primary('date'); //勤怠の日付
             $table->string('email');
             $table->foreign('email')->references('email')->on('users');
-            $table->date('inTime');
-            $table->date('outTime');
-            $table->date('restTime');
+            $table->time('inTime');
+            $table->time('outTime');
+            $table->time('restTime');
             $table->timestamps();
         });
     }
